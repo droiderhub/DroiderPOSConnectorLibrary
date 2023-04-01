@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
         Log.d("DROIDER_APPL_name", this.getClass().getSimpleName());
 
         send_amount.setOnClickListener(v -> {
-//            DroiderManager.getInstance().sendAmount(getApplicationContext(), getIntent());
             TheDroider.connectPOS().sendAmount(getApplicationContext(), getIntent());
         });
     }
