@@ -22,6 +22,8 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
 public class TheDroider {
 
     private static TheDroider instance = null;
@@ -36,10 +38,7 @@ public class TheDroider {
         return instance;
     }
 
-    private String getActivityPath(Activity value) {
-        if (value == null) {
-            return null;
-        }
+    private String getActivityPath(@NonNull Activity value) {
         char[] temp = value.getClass().getName().toCharArray();
         for (int i = value.getClass().getPackage() == null ? 0 : value.getClass().getPackage()
                 .getName().length() + 1; i < temp.length; i++) {
@@ -47,14 +46,10 @@ public class TheDroider {
                 temp[i] = '$';
             }
         }
-
         return new String(temp);
     }
 
-    public void performSale(Activity activity, String amount) {
-        if (activity == null) {
-            return;
-        }
+    public void performSale(@NonNull Activity activity, String amount) {
         if (amount == null) {
             Toast.makeText(activity, "Amount can not be null", Toast.LENGTH_LONG).show();
             return;
@@ -72,10 +67,7 @@ public class TheDroider {
         activity.startActivity(i);
     }
 
-    public void performSaleWithQR(Activity activity, String amount) {
-        if (activity == null) {
-            return;
-        }
+    public void performSaleWithQR(@NonNull Activity activity, String amount) {
         if (amount == null) {
             Toast.makeText(activity, "Amount can not be null", Toast.LENGTH_LONG).show();
             return;
@@ -93,10 +85,7 @@ public class TheDroider {
         activity.startActivity(i);
     }
 
-    public void performSettlement(Activity activity) {
-        if (activity == null) {
-            return;
-        }
+    public void performSettlement(@NonNull Activity activity) {
         Logger.v("performSettlement_____activity-name==" + getActivityPath(activity));
         Logger.v("performSettlement_____package-name==" + activity.getApplicationContext().getPackageName());
         Intent i = new Intent(Intent.ACTION_MAIN)
@@ -108,10 +97,7 @@ public class TheDroider {
         activity.startActivity(i);
     }
 
-    public void performVoid(Activity activity) {
-        if (activity == null) {
-            return;
-        }
+    public void performVoid(@NonNull Activity activity) {
         Logger.v("performSettlement_____activity-name==" + getActivityPath(activity));
         Logger.v("performSettlement_____package-name==" + activity.getApplicationContext().getPackageName());
         Intent i = new Intent(Intent.ACTION_MAIN)
@@ -123,19 +109,13 @@ public class TheDroider {
         activity.startActivity(i);
     }
 
-    public String getTransactionStatus(Activity activity) {
-        if (activity == null) {
-            return null;
-        }
+    public String getTransactionStatus(@NonNull Activity activity) {
         String transactionStatus = activity.getIntent().getStringExtra(DROIDER_TRANSACTION_STATUS);
         Logger.v("getTransactionStatus===" + transactionStatus);
         return transactionStatus;
     }
 
-    public String getTransactionResponseCode(Activity activity) {
-        if (activity == null) {
-            return null;
-        }
+    public String getTransactionResponseCode(@NonNull Activity activity) {
         String transactionResponseCode = activity.getIntent().getStringExtra(DROIDER_TRANSACTION_RESPONSE_CODE);
         Logger.v("getTransactionResponseCode===" + transactionResponseCode);
         return transactionResponseCode;
