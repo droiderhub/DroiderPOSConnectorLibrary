@@ -20,6 +20,7 @@ import static com.droider.droiderposconnectorlibrary.DroiderConstant.DROIDER_VOI
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.widget.Toast;
 
 public class TheDroider {
 
@@ -35,65 +36,106 @@ public class TheDroider {
         return instance;
     }
 
+    private String getActivityPath(Activity value) {
+        if (value == null) {
+            return null;
+        }
+        char[] temp = value.getClass().getName().toCharArray();
+        for (int i = value.getClass().getPackage() == null ? 0 : value.getClass().getPackage()
+                .getName().length() + 1; i < temp.length; i++) {
+            if (temp[i] == '.') {
+                temp[i] = '$';
+            }
+        }
+
+        return new String(temp);
+    }
+
     public void performSale(Activity activity, String amount) {
+        if (activity == null) {
+            return;
+        }
+        if (amount == null) {
+            Toast.makeText(activity, "Amount can not be null", Toast.LENGTH_LONG).show();
+            return;
+        }
         Logger.v("performSale_____amount==" + amount);
-        Logger.v("performSale_____activity-name==" + activity.getApplicationContext().getPackageName() + "." + activity.getClass().getSimpleName());
+        Logger.v("performSale_____activity-name==" + getActivityPath(activity));
         Logger.v("performSale_____package-name==" + activity.getApplicationContext().getPackageName());
         Intent i = new Intent(Intent.ACTION_MAIN)
                 .putExtra(DROIDER_APPLICATION_NAME, DROIDER_APPLICATION_NAME_SILVER_LINE)
                 .putExtra(DROIDER_TRANSACTION_TYPE, DROIDER_SALE_TRANSACTION)
                 .putExtra(DROIDER_AMOUNT, amount)
                 .putExtra(DROIDER_APPLICATION_PACKAGE_NAME, activity.getApplicationContext().getPackageName())
-                .putExtra(DROIDER_APPLICATION_ACTIVITY_NAME, activity.getApplicationContext().getPackageName() + "." + activity.getClass().getSimpleName());
+                .putExtra(DROIDER_APPLICATION_ACTIVITY_NAME, getActivityPath(activity));
         i.setComponent(new ComponentName(DESTINATION_PACKAGE_NAME, DESTINATION_INPUT_MONEY_ACTIVITY));
         activity.startActivity(i);
     }
 
     public void performSaleWithQR(Activity activity, String amount) {
+        if (activity == null) {
+            return;
+        }
+        if (amount == null) {
+            Toast.makeText(activity, "Amount can not be null", Toast.LENGTH_LONG).show();
+            return;
+        }
         Logger.v("performSaleWithQR_____amount==" + amount);
-        Logger.v("performSaleWithQR_____activity-name==" + activity.getApplicationContext().getPackageName() + "." + activity.getApplicationContext().getClass().getSimpleName());
+        Logger.v("performSaleWithQR_____activity-name==" + getActivityPath(activity));
         Logger.v("performSaleWithQR_____package-name==" + activity.getApplicationContext().getPackageName());
         Intent i = new Intent(Intent.ACTION_MAIN)
                 .putExtra(DROIDER_APPLICATION_NAME, DROIDER_APPLICATION_NAME_SILVER_LINE)
                 .putExtra(DROIDER_TRANSACTION_TYPE, DROIDER_SALE_WITH_QR_TRANSACTION)
                 .putExtra(DROIDER_AMOUNT, amount)
                 .putExtra(DROIDER_APPLICATION_PACKAGE_NAME, activity.getApplicationContext().getPackageName())
-                .putExtra(DROIDER_APPLICATION_ACTIVITY_NAME, activity.getApplicationContext().getPackageName() + "." + activity.getClass().getSimpleName());
+                .putExtra(DROIDER_APPLICATION_ACTIVITY_NAME, getActivityPath(activity));
         i.setComponent(new ComponentName(DESTINATION_PACKAGE_NAME, DESTINATION_INPUT_MONEY_ACTIVITY));
         activity.startActivity(i);
     }
 
     public void performSettlement(Activity activity) {
-        Logger.v("performSettlement_____activity-name==" + activity.getApplicationContext().getPackageName() + "." + activity.getApplicationContext().getClass().getSimpleName());
+        if (activity == null) {
+            return;
+        }
+        Logger.v("performSettlement_____activity-name==" + getActivityPath(activity));
         Logger.v("performSettlement_____package-name==" + activity.getApplicationContext().getPackageName());
         Intent i = new Intent(Intent.ACTION_MAIN)
                 .putExtra(DROIDER_APPLICATION_NAME, DROIDER_APPLICATION_NAME_SILVER_LINE)
                 .putExtra(DROIDER_TRANSACTION_TYPE, DROIDER_SETTLEMENT_TRANSACTION)
                 .putExtra(DROIDER_APPLICATION_PACKAGE_NAME, activity.getApplicationContext().getPackageName())
-                .putExtra(DROIDER_APPLICATION_ACTIVITY_NAME, activity.getApplicationContext().getPackageName() + "." + activity.getClass().getSimpleName());
+                .putExtra(DROIDER_APPLICATION_ACTIVITY_NAME, getActivityPath(activity));
         i.setComponent(new ComponentName(DESTINATION_PACKAGE_NAME, DESTINATION_SETTLEMENT_ACTIVITY));
         activity.startActivity(i);
     }
 
     public void performVoid(Activity activity) {
-        Logger.v("performSettlement_____activity-name==" + activity.getApplicationContext().getPackageName() + "." + activity.getApplicationContext().getClass().getSimpleName());
+        if (activity == null) {
+            return;
+        }
+        Logger.v("performSettlement_____activity-name==" + getActivityPath(activity));
         Logger.v("performSettlement_____package-name==" + activity.getApplicationContext().getPackageName());
         Intent i = new Intent(Intent.ACTION_MAIN)
                 .putExtra(DROIDER_APPLICATION_NAME, DROIDER_APPLICATION_NAME_SILVER_LINE)
                 .putExtra(DROIDER_TRANSACTION_TYPE, DROIDER_VOID_TRANSACTION)
                 .putExtra(DROIDER_APPLICATION_PACKAGE_NAME, activity.getApplicationContext().getPackageName())
-                .putExtra(DROIDER_APPLICATION_ACTIVITY_NAME, activity.getApplicationContext().getPackageName() + "." + activity.getClass().getSimpleName());
+                .putExtra(DROIDER_APPLICATION_ACTIVITY_NAME, getActivityPath(activity));
         i.setComponent(new ComponentName(DESTINATION_PACKAGE_NAME, DESTINATION_VOID_ACTIVITY));
         activity.startActivity(i);
     }
 
     public String getTransactionStatus(Activity activity) {
+        if (activity == null) {
+            return null;
+        }
         String transactionStatus = activity.getIntent().getStringExtra(DROIDER_TRANSACTION_STATUS);
         Logger.v("getTransactionStatus===" + transactionStatus);
         return transactionStatus;
     }
 
     public String getTransactionResponseCode(Activity activity) {
+        if (activity == null) {
+            return null;
+        }
         String transactionResponseCode = activity.getIntent().getStringExtra(DROIDER_TRANSACTION_RESPONSE_CODE);
         Logger.v("getTransactionResponseCode===" + transactionResponseCode);
         return transactionResponseCode;
