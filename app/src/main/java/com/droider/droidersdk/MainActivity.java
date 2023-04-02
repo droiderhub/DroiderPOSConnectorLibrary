@@ -21,12 +21,10 @@ public class MainActivity extends AppCompatActivity {
 
         send_amount = findViewById(R.id.send_amount);
         result_tv = findViewById(R.id.result_tv);
-        result_tv.setText(getIntent().getStringExtra("DROIDER_AMOUNT_RESULT"));
-        Log.d("DROIDER_APPLICATION", getApplicationContext().getPackageName());
-        Log.d("DROIDER_APPL_name", this.getClass().getSimpleName());
+        result_tv.setText(TheDroider.connectPOS().getTransactionStatus(this));
 
         send_amount.setOnClickListener(v -> {
-            TheDroider.connectPOS().sendAmount(getApplicationContext(), getIntent());
+            TheDroider.connectPOS().performSale(this,"1599.89");
         });
     }
 
