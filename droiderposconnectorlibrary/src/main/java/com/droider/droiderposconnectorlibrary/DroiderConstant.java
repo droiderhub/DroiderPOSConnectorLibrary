@@ -3,9 +3,9 @@ package com.droider.droiderposconnectorlibrary;
 public interface DroiderConstant {
 
     String DESTINATION_PACKAGE_NAME = "com.hbl.centerm";
-    String DESTINATION_INPUT_MONEY_ACTIVITY = "com.hbl.centerm.view.activities.InputMoneyActivity";
-    String DESTINATION_SETTLEMENT_ACTIVITY = "com.hbl.centerm.view.activities.SettlementActivity";
-    String DESTINATION_VOID_ACTIVITY = "com.hbl.centerm.view.activities.VoidActivity";
+    String DESTINATION_INPUT_MONEY_ACTIVITY = "com.app.centerm.view.activities.InputMoneyActivity";
+    String DESTINATION_SETTLEMENT_ACTIVITY = "com.app.centerm.view.activities.SettlementActivity";
+    String DESTINATION_VOID_ACTIVITY = "com.app.centerm.view.activities.VoidActivity";
 
     String DROIDER = "DROIDER";
     String DROIDER_APPLICATION_NAME = "DROIDER_APPLICATION_NAME";
@@ -15,8 +15,8 @@ public interface DroiderConstant {
     String DROIDER_APPLICATION_ACTIVITY_NAME = "DROIDER_APPLICATION_ACTIVITY_NAME";
 
     String DROIDER_TRANSACTION_STATUS = "DROIDER_TRANSACTION_STATUS";
-    String DROIDER_TRANSACTION_STATUS_SUCCESS = "DROIDER_TRANSACTION_STATUS_SUCCESS";
-    String DROIDER_TRANSACTION_STATUS_FAILURE = "DROIDER_TRANSACTION_STATUS_FAILURE";
+    String DROIDER_TRANSACTION_STATUS_SUCCESS = "Transaction Success";
+    String DROIDER_TRANSACTION_STATUS_FAILURE = "Transaction Failed";
     String DROIDER_TRANSACTION_RESPONSE_CODE = "DROIDER_TRANSACTION_RESPONSE_CODE";
 
     //TYPE OF TRANSACTION
