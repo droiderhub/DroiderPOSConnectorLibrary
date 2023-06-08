@@ -26,6 +26,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import java.util.Objects;
+
 public class TheDroider {
 
     private static TheDroider instance = null;
@@ -118,6 +120,16 @@ public class TheDroider {
             Logger.v("getTransactionResponseCode===" + transactionResponseCode);
             return transactionResponseCode;
         } else {
+            return null;
+        }
+    }
+
+    public String getData(@NonNull Activity activity){
+        if (Objects.equals(activity.getIntent().getAction(), Intent.ACTION_SEND) && activity.getIntent().getType().startsWith("text/")) {
+            // Session 1: Handle received text data
+//            return  activity.getIntent().getStringExtra(Intent.EXTRA_TEXT);
+            return  activity.getIntent().getStringExtra(DROIDER_TRANSACTION_RESPONSE_CODE);
+        }else {
             return null;
         }
     }
