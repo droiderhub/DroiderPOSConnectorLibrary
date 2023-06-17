@@ -124,14 +124,5 @@ public class TheDroider {
         }
     }
 
-    public String getData(@NonNull Activity activity){
-        if (Objects.equals(activity.getIntent().getAction(), Intent.ACTION_SEND) && activity.getIntent().getType().startsWith("text/")) {
-            // Session 1: Handle received text data
-//            return  activity.getIntent().getStringExtra(Intent.EXTRA_TEXT);
-            return  activity.getIntent().getStringExtra(DROIDER_TRANSACTION_RESPONSE_CODE);
-        }else {
-            return null;
-        }
-    }
 
 }
