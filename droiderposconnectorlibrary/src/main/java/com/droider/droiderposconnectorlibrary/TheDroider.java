@@ -95,13 +95,9 @@ public class TheDroider {
     }
 
     public String getTransactionStatus(@NonNull Activity activity) {
-        if (activity.getIntent().getBooleanExtra(DROIDER_IS_TRANSACTION_COMPLETED, false)) {
             String transactionStatus = activity.getIntent().getStringExtra(DROIDER_TRANSACTION_STATUS);
             Logger.v("getTransactionStatus===" + transactionStatus);
             return transactionStatus;
-        } else {
-            return null;
-        }
     }
 
     public String getTransactionInvoiceNumber(@NonNull Activity activity) {
