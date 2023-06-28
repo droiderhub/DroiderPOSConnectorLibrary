@@ -61,7 +61,8 @@ public class TheDroider {
         Logger.v("performSale_____activity-name==" + getActivityPath(activity));
         Logger.v("performSale_____package-name==" + activity.getApplicationContext().getPackageName());
         Intent i = new Intent(Intent.ACTION_MAIN).putExtra(DROIDER_IS_TRANSACTION_COMPLETED, false).putExtra(DROIDER_APPLICATION_NAME, DROIDER_APPLICATION_NAME_POS_UNIVERSAL).putExtra(DROIDER_TRANSACTION_TYPE, DROIDER_SALE_TRANSACTION).putExtra(DROIDER_AMOUNT, amount).putExtra(DROIDER_APPLICATION_PACKAGE_NAME, activity.getApplicationContext().getPackageName()).putExtra(DROIDER_APPLICATION_ACTIVITY_NAME, getActivityPath(activity));
-        i.setComponent(new ComponentName(DESTINATION_PACKAGE_NAME, DESTINATION_INPUT_MONEY_ACTIVITY));
+//        i.setComponent(new ComponentName(DESTINATION_PACKAGE_NAME, DESTINATION_INPUT_MONEY_ACTIVITY));
+        i.setClassName(DESTINATION_PACKAGE_NAME, DESTINATION_INPUT_MONEY_ACTIVITY);
         activity.startActivityForResult(i,999);
     }
 
