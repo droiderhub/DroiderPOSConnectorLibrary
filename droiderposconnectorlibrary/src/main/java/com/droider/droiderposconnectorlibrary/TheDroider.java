@@ -21,7 +21,6 @@ import static com.droider.droiderposconnectorlibrary.DroiderConstant.DROIDER_TRA
 import static com.droider.droiderposconnectorlibrary.DroiderConstant.DROIDER_VOID_TRANSACTION;
 
 import android.app.Activity;
-import android.content.ComponentName;
 import android.content.Intent;
 import android.widget.Toast;
 
