@@ -28,23 +28,16 @@ import androidx.annotation.NonNull;
 
 final class TheDroider implements HBLServices {
 
-    private static TheDroider instance = null;
-
     private TheDroider() {
     }
 
-    private static final HBLServices getHBLServices = new TheDroider();
+    private static HBLServices getHBLServices = null;
 
-    static HBLServices getHBLServices() {
-        return getHBLServices;
-    }
-
-
-    public static synchronized TheDroider getInstance() {
-        if (instance == null) {
-            instance = new TheDroider();
+    public static synchronized HBLServices getHBLServices() {
+        if (getHBLServices == null) {
+            getHBLServices = new TheDroider();
         }
-        return instance;
+        return getHBLServices;
     }
 
     private String getActivityPath(@NonNull Activity value) {
